@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lovege</title>
+    <title>Card Generator App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
@@ -25,7 +25,7 @@
     </script>
 </head>
 <body>
-    <!--<div class="wrapper">-->
+    <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -65,7 +65,7 @@
                                         echo "<td>" . $row['umur'] . "</td>";
                                         echo "<td>" . $row['ttl'] . "</td>";
                                         echo "<td>";
-                                            echo "<a href='aset/read.php?id=". $row['id'] ."' title='View Data' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            echo "<a href='aset/read.php?id=". $row['id'] ."' title='View Data' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                             echo "<a href='aset/update.php?id=". $row['id'] ."' title='Update Data' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='aset/delete.php?id=". $row['id'] ."' title='Delete Data' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
@@ -76,7 +76,7 @@
                             // Free result set
                             mysqli_free_result($result);
                         } else{
-                            echo "<p class='lead'><em>No records were found.</em></p>";
+                            echo "<p class='lead'><em>No data record.</em></p>";
                         }
                     } else{
                         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
