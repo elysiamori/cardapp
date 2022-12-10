@@ -3,8 +3,8 @@
 require_once "connect.php";
 
 
-$id_card = $name = $stat = $hobi = $umur = $ttl =  "";
-$id_card_err = $name_err = $stat_err = $hobi_err = $umur_err = $ttl_err = "";
+$id_card = $name = $stat = $hobi = $umur = $ttl = $file = "";
+$id_card_err = $name_err = $stat_err = $hobi_err = $umur_err = $ttl_err = $file_err = "";
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -57,14 +57,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $ttl = $input_ttl;
     }
 
+    $input_file = trim($_POST["file"]);
+    if(empty($input_file)){
+        $file_err = "Please enter a file.";
+    } else{
+        $file = $input_file;
+    }
+
+
+    
+
     // Check input errors before inserting in database
-    if(empty($id_card_err) && empty($name_err) && empty($stat_err) && empty($hobi_err) && empty($umur_err) && empty($ttl_err)){
+    if(empty($id_card_err) && empty($name_err) && empty($stat_err) && empty($hobi_err) && empty($umur_err) && empty($ttl_err) && empty($file_err)){
         
-        $sql = "INSERT INTO datachar (id_card, name, stat, hobi, umur, ttl) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO datachar (id_card, name, stat, hobi, umur, ttl, file) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         if($stmt = mysqli_prepare($conn, $sql)){
             
-            mysqli_stmt_bind_param($stmt, "ssssss",$param_id_card, $param_name, $param_stat, $param_hobi, $param_umur, $param_ttl);
+            mysqli_stmt_bind_param($stmt, "sssssss",$param_id_card, $param_name, $param_stat, $param_hobi, $param_umur, $param_ttl, $param_file);
 
             // Set parameters
             $param_id_card = $id_card;
@@ -73,6 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_hobi = $hobi;
             $param_umur = $umur;
             $param_ttl = $ttl;
+            $param_file = $file;
 
             
             if(mysqli_stmt_execute($stmt)){
@@ -114,8 +125,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="page-header">
                         <h2>Add Data <span class='glyphicon glyphicon-plus'></span></h2>
                     </div>
-                    <p>Yoooookoso</p>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <p>Hallo</p>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group <?php echo (!empty($id_card_err)) ? 'has-error' : ''; ?>">
                             <label>ID Card</label>
                             <input type="text" name="id_card" class="form-control" value="<?php echo $id_card; ?>">
@@ -146,9 +157,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="ttl" class="form-control" value="<?php echo $ttl; ?>">
                             <span class="help-block"><?php echo $ttl_err;?></span>
                         </div>
-                        <div class="form-group">
-                            <label for="photo">Photo</label>
-                            <input type="file" name="image" />
+                        <div class="form-group <?php echo (!empty($file_err)) ? 'has-error' : ''; ?>">
+                            <label>Link Photo</label>
+                            <input type="text" name="file" class="form-control" value="<?php echo $file; ?>">
+                            <span class="help-block"><?php echo $file_err;?></span>
                         </div>
                         
                         <input type="submit" class="btn btn-primary" value="Submit">
