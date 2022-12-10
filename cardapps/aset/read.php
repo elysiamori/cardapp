@@ -80,11 +80,11 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
             <?php echo $row["id_card"]; ?>
         </p>
         <!-- foto -->
-        <img src="https://i.pinimg.com/736x/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" alt="img"/>
+        <img src="<?php echo $row["file"]; ?>" alt="img"/>
         <!-- nama -->
         <h2 class="nama fontge" id="name"><?php echo $row["name"]; ?></h2>
         <!-- status -->
-        <div class="status fontge1">
+        <div class="status fontge">
             <span id="stat"><?php echo $row["stat"]; ?></span>
         </div>
         <!-- Hobi, Umur, TTL -->
@@ -103,11 +103,10 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
             </div>
         </div>
     </div>
-    <div>
-    <p><a href="../index.php" style="text-decoration:none" class="btn btn-primary status1 fontge1">Back</a></p>
-    <button id="down">Download</button>
+    <div class="info">
+        <button id="demo" class="downloadtable btn btn-primary" onclick="downloadtable()"> Download Id Card</button>
+        <p><a href="../index.php" style="text-decoration:none" class="btn btn-primary status1 fontge1">Back</a></p>
     </div>
 </div>
-<script src="main.js"></script>
 </body>
 </html>
