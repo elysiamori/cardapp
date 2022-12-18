@@ -32,7 +32,7 @@
               <a class="nav-link" href="#about">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="card.php">Card Maker</a>
+              <a class="nav-link" href="./aset/card.php">Card Maker</a>
             </li>
           </ul>
         </div>
@@ -70,7 +70,7 @@
           </div>
           <div class="col-md-4">
             <p>3337210051 Ikhfa Aulia</p>
-            <p>3337210070 Affalah Pramudia Sesutio</p>
+            <p>3337210069 Affalah Pramudia Sesutio</p>
           </div>
         </div>
       </div>
