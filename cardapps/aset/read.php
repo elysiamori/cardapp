@@ -104,7 +104,22 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         </div>
     </div>
     <div class="info">
-        <button id="demo" class="downloadtable btn btn-primary" onclick="downloadtable()"> Download Id Card</button>
+        <button id="demo" class="downloadtable btn btn-primary"> Download Id Card</button>
+        <script src="html2canvas.min.js"></script>
+        <script>
+            document.getElementById("demo").onclick = function(){
+                const screenshootTarget = document.getElementById('card');
+
+                html2canvas(screenshootTarget).then((canvas) => {
+                    const base64image = canvas.toDataURL("image/png");
+                    var anchor = document.createElement('a');
+                    anchor.setAttribute("href", base64image);
+                    anchor.setAttribute("download", "my-image.png");
+                    anchor.click();
+                    anchor.remove();
+                })
+            }
+        </script>
         <p><a href="../index.php" style="text-decoration:none" class="btn btn-primary status1 fontge1">Back</a></p>
     </div>
 </div>
